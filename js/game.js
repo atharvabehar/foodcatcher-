@@ -44,7 +44,7 @@ class Game{
                  var x =100;
                  var y=200;
                  var index =0;
-                 drawSprites();
+                 
                  for(var plr in allPlayers){
                     
                     
@@ -57,17 +57,20 @@ class Game{
                        
                      if(index === player.index){
                          
-                         fill("black");
+                         fill("purple");
+                         ellipse (x,y,200,100);
                          textSize(25);
                          text(allPlayers[plr].name ,x-25,y+25);
 
                          
                      }
-                    
-                     
+                    textSize (25);
+                    fill("white");
+                    text ("player 1: "+ allPlayers.player1.score, 50 , 50);
+                    text ("player 2: "+ allPlayers.player2.score, 50 , 100);
                  
                  }
-                
+                 drawSprites();
                 
                  
 
@@ -102,6 +105,13 @@ class Game{
                  
                   if (player.index !== null) {
                      //fill code here, to destroy the objects.
+                     for (var i = 0 ; i < fruitGroup.length ; i++){
+                         if (fruitGroup.get (i).isTouching(players)){
+                             fruitGroup.get (i).destroy ();
+                             player.score += 1;
+                             player.update();
+                            }
+                     }
                   }
                 
 
